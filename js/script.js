@@ -112,15 +112,12 @@ function newGame(container, cardsCount) {
   //   location.reload();
   // }, 60000);
 
-  // конечная дата
   const deadline = new Date(Date.now() + 60999);
-  // id таймера
   let timerId = null;
   // склонение числительных
   function declensionNum(num, words) {
     return words[(num % 100 > 4 && num % 100 < 20) ? 2 : [2, 0, 1, 1, 1, 2][(num % 10 < 5) ? num % 10 : 5]];
   }
-  // вычисляем разницу дат и устанавливаем оставшееся времени в качестве содержимого элементов
   function countdownTimer() {
     const diff = deadline - new Date();
     if (diff <= 0) {
@@ -136,12 +133,9 @@ function newGame(container, cardsCount) {
     $minutes.dataset.title = declensionNum(minutes, ['минута', 'минуты', 'минут']);
     $seconds.dataset.title = declensionNum(seconds, ['секунда', 'секунды', 'секунд']);
   }
-  // получаем элементы, содержащие компоненты даты
   const $minutes = document.querySelector('.timer__minutes');
   const $seconds = document.querySelector('.timer__seconds');
-  // вызываем функцию countdownTimer
   countdownTimer();
-  // вызываем функцию countdownTimer каждую секунду
   timerId = setInterval(countdownTimer, 1000);
 
   // Логика
